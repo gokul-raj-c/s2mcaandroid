@@ -1,0 +1,317 @@
+Experiment 9: " Full-Featured Calculator with Layout Design “
+
+Objective: To learn how to build a complete, working calculator combining arithmetic logic with advanced layout techniques using GridLayout and LinearLayout.
+
+Question: Build a complete calculator app. Design its entire screen using GridLayout for all the number buttons (0-9) and operation buttons (+, -, *, /, equals, clear). Use a LinearLayout for the display area at the top where numbers are typed and results are shown. Make sure the calculator can perform all basic math operations correctly, and displays the answers in the top display area.
+
+------------------------------------------------------------------------------------------------
+
+MainActivity.java
+
+package com.example.experiment9;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+public class MainActivity extends AppCompatActivity {
+    EditText editText;
+    String oldNumber = "";
+    String operator = "";
+    boolean isNewOp = true;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        editText = findViewById(R.id.editText);
+        editText.setShowSoftInputOnFocus(false); // disables keyboard popup
+    }
+    // Handles all button clicks
+    public void operatorEvent(View view) {
+        Button btn = (Button) view;
+        String btnText = btn.getText().toString();
+        String number = editText.getText().toString();
+        switch (btnText) {
+            case "C":
+                editText.setText("0.0");
+                isNewOp = true;
+                oldNumber = "";
+                operator = "";
+                break;
+            case "+":
+            case "-":
+            case "*":
+            case "/":
+                oldNumber = number;
+                operator = btnText;
+                editText.setText(number + operator);  
+                isNewOp = false;
+                break;
+            case "=":
+                String[] parts = number.split("[" + "\\+\\-\\*/" + "]");
+                if (parts.length < 2) return;
+                double first = Double.parseDouble(parts[0]);
+                double second = Double.parseDouble(parts[1]);
+                double result = 0.0;
+                switch (operator) {
+                    case "+": result = first + second; break;
+                    case "-": result = first - second; break;
+                    case "*": result = first * second; break;
+                    case "/":
+                        if (second != 0) result = first / second;
+                        else {
+                            editText.setText("Error");
+                            return;
+                        }
+                        break;
+                }
+                editText.setText(String.valueOf(result));
+                isNewOp = true;
+                break;
+            default: // digits
+                if (isNewOp || number.equals("0.0")) {
+                    editText.setText(btnText);
+                    isNewOp = false;
+                } else {
+                    editText.setText(number + btnText);  
+                }
+                break;
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="421dp"
+        android:id="@+id/editText"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_weight="1"
+        android:textColor="@color/orange"
+        android:ems="10"
+        android:layout_gravity="right|center"
+        android:text="0.0"
+        android:textSize="100dp"
+        android:inputType="number"/>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b1"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="C"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b2"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="0"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b3"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="*"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b4"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="-"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b5"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="7"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b6"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="8"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b7"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="9"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b8"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="+"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b9"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="4"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b10"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="5"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b11"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="6"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b12"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="/"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+    </GridLayout>
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="4"
+        android:columnCount="4"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp">
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b13"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="1"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b14"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="2"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b15"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="3"
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+        <Button
+            android:layout_width="35pt"
+            android:layout_height="50pt"
+            android:id="@+id/b16"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:onClick="operatorEvent"
+            android:text="="
+            android:textSize="40dp"
+            tools:ignore="OnClick" />
+
+    </GridLayout>
+</LinearLayout>
+

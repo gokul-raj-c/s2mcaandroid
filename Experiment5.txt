@@ -1,0 +1,72 @@
+Experiment 5: "TextView vs. Toast: Message Display“
+
+Objective: To clearly demonstrate and differentiate between the characteristics and appropriate use cases of a TextView (for persistent UI display) and a Toast message (for transient, non-intrusive feedback) in an Android application.
+
+Question: Design an Android application to demonstrate the differences between TextView and Toast messages in terms of how they display information.
+
+
+------------------------------------------------------------------------------------------------
+
+MainActivity.java
+
+package com.example.experiment5;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("This is a text displayed on textview");
+    }
+    // Button click handler
+    public void showToastMessage(View view) {
+        Toast.makeText(this, "This is a tost notification",
+        Toast.LENGTH_LONG).show();
+    }
+}
+
+
+------------------------------------------------------------------------------------------------
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:padding="12dp"
+        android:background="#E0E0E0"
+        android:layout_marginBottom="32dp"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="show toast message"
+        android:onClick="showToastMessage"
+        android:backgroundTint="#6200EE"
+        android:textColor="#FFFFFF"/>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+

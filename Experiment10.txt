@@ -1,0 +1,193 @@
+Experiment 10: " Student Registration Form with Checks “
+
+Objective: Learn to build a form with different input fields and check if the information typed is correct.
+
+Question: Design a student sign-up form. Include boxes for Name, Email, Password, and Phone Number. Add a "Register" button. When clicked, check if each box has corrected info (e.g., email has "@", phone is 10 digits, password isn't empty). If everything is good, show a message "Signed Up!". If something is wrong, show a message saying what needs fixing.
+
+------------------------------------------------------------------------------------------------
+
+MainActivity.java
+
+package com.example.experiment10;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import com.google.android.material.button.MaterialButton;
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        // 1. Initialize all EditText and Button views
+        EditText username = findViewById(R.id.username);
+        EditText useremail = findViewById(R.id.useremail);
+        EditText phoneNumber = findViewById(R.id.phonenumber);
+        EditText password = findViewById(R.id.password);
+        // Based on your XML, cpassword is the fourth EditText, so we'll assume it's for the phone number.
+        MaterialButton regbtn = findViewById(R.id.signupbtn);
+
+        // 2. Set an OnClickListener for the registration button
+        regbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 3. Get the text from each input field and trim whitespace
+                String name = username.getText().toString().trim();
+                String email = useremail.getText().toString().trim();
+                String phone = phoneNumber.getText().toString().trim();
+                String pass = password.getText().toString().trim();
+
+                // 4. Perform validation checks
+                if (name.isEmpty()) {
+                    Toast.makeText(MainActivity.this,"Name cannot be empty.", Toast.LENGTH_SHORT).show();
+                } else if (!email.contains("@")) {
+                    Toast.makeText(MainActivity.this, "Please enter a valid email address.", Toast.LENGTH_SHORT).show();
+                } else if (phone.length() != 10) {
+                    Toast.makeText(MainActivity.this, "Phone number must be 10 digits.", Toast.LENGTH_SHORT).show();
+                } else if (pass.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Password cannot be empty.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // 5. If all validations pass, show a success message
+                    Toast.makeText(MainActivity.this, "Signed Up! Welcome, " + name + ".", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+    }
+}
+
+------------------------------------------------------------------------------------------------
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rbgg"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/signuptitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="25dp"
+        android:gravity="center"
+        android:text="Sign-Up"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:layout_below="@+id/signuptitle"
+        android:background="#30ffffff"
+        android:hint="Username"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/useremail"
+        android:layout_below="@+id/username"
+        android:background="#30ffffff"
+        android:hint="Email"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+
+    <EditText
+        android:id="@+id/phonenumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/useremail"
+        android:layout_margin="10dp"
+        android:layout_marginTop="129dp"
+        android:layout_marginBottom="10dp"
+        android:background="#30ffffff"
+        android:hint="Phone Number"
+        android:padding="20dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password"
+        android:layout_below="@+id/phonenumber"
+        android:background="#30ffffff"
+        android:hint="Password"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:layout_margin="10dp"
+        android:padding="20dp"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/signupbtn"
+        android:text="Sign-Up"
+        android:textSize="25dp"
+        android:layout_below="@+id/password"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/design_default_color_secondary"
+        android:layout_margin="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/info"
+        android:text="or signup with"
+        android:textSize="25dp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/signupbtn"
+        android:layout_centerHorizontal="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/socialicons"
+        android:gravity="center"
+        android:layout_below="@+id/info"
+        android:layout_alignParentBottom="true">
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/googleicon"/>
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_margin="20dp"
+            android:src="@drawable/facebookicon"/>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
+

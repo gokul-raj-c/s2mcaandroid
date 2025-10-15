@@ -1,0 +1,77 @@
+Experiment 8: " Image Toggle “
+
+Objective: To learn how to use FrameLayout to stack UI elements and toggle their visibility.
+
+Question: Develop an application that toggles an image using FrameLayout. When a button is clicked, make one image disappear and another appear in its place.
+
+------------------------------------------------------------------------------------------------
+
+MainActivity.java
+
+package com.example.experiment8;
+import android.media.Image;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    ImageView Img;
+    boolean flg;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        Button btn=(Button)findViewById(R.id.btn);
+        Img=(ImageView)findViewById(R.id.img);
+        btn.setOnClickListener((View.OnClickListener) this);
+        flg=true;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(flg){
+            Img.setImageResource(R.drawable.image1);
+            flg=false;
+        }
+        else{
+            Img.setImageResource(R.drawable.image2);
+        }
+    }
+}
+
+------------------------------------------------------------------------------------------------
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="299dp"
+        android:layout_height="592dp"
+        android:src="@drawable/image1"
+        android:text="Hello World!" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:text="Change Image" />
+
+</LinearLayout>
+

@@ -1,0 +1,78 @@
+Experiment 13: "Colour Picker with ListView" 
+
+Objective: Learn to change the background color of an app's screen based on user  selection from a ListView (ListBox). 
+
+Question: Create an app with a main screen that serves as the background. Add a  ListView (ListBox) displaying at least three color options — for example: Red, Green, and  Blue. When the user taps on a color from the list, change the background color of the  screen to the selected color. 
+
+
+------------------------------------------------------------------------------------------------
+
+MainActivity.java 
+
+package com.example.experiment13;
+import android.annotation.SuppressLint;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+public class MainActivity extends AppCompatActivity {
+    private LinearLayout mainLayout;
+    private ListView colorList;
+    private String[] colors = {"Red", "Green", "Blue"};
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mainLayout = findViewById(R.id.mainLayout);
+        colorList = findViewById(R.id.colorList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, colors);
+        colorList.setAdapter(adapter);
+        colorList.setOnItemClickListener((parent, view, position, id) -> {
+            switch (colors[position]) {
+                case "Red":
+                    mainLayout.setBackgroundColor(Color.RED);
+                    break;
+                case "Green":
+                    mainLayout.setBackgroundColor(Color.GREEN);
+                    break;
+                case "Blue":
+                    mainLayout.setBackgroundColor(Color.BLUE);
+                    break;
+            }
+        });
+    }
+}
+
+------------------------------------------------------------------------------------------------
+
+activity_main.xml
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp">
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose a Color"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp" />
+    <ListView
+        android:id="@+id/colorList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:dividerHeight="2dp" />
+</LinearLayout>
