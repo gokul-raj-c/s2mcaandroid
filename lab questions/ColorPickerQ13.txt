@@ -1,0 +1,83 @@
+activity_main
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/mainlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:text="Choose color"
+            android:textSize="20dp"
+            android:gravity="center"/>
+
+        <ListView
+            android:id="@+id/listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:dividerHeight="2dp" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+--------------------------------------------------------------------------------------------------------------
+
+MainActivity
+
+package com.example.colorpickerq13;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    private LinearLayout mainLayout;
+    private ListView lv;
+    private String[] colors={"Red","Blue","Green"};
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        mainLayout=findViewById(R.id.mainlayout);
+        lv=findViewById(R.id.listview);
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(MainActivity.this, android.R.layout.simple_list_item_1,colors);
+        lv.setAdapter(adapter);
+        lv.setOnItemClickListener(((parent, view, position, id) -> {
+            switch (colors[position]){
+                case "Red":
+                    mainLayout.setBackgroundColor(Color.RED);
+                    break;
+                case "Green":
+                    mainLayout.setBackgroundColor(Color.GREEN);
+                    break;
+                case "Blue":
+                    mainLayout.setBackgroundColor(Color.BLUE);
+                    break;
+            }
+        }));
+
+    }
+}
