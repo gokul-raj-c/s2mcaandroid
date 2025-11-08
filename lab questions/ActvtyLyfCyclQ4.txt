@@ -1,0 +1,51 @@
+package com.example.actvtylyfcyclq4;
+
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+public static final String TAG="LifeCycle";
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        Log.d(TAG,"OnCreate()-Activity Created");
+    }
+    @Override
+    protected void onStart(){
+        super.onStart();
+        Log.d(TAG,"OnStart()-Activity Started");
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG,"OnResume()-Activity is interactive");
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG,"OnPause()-Activity is paused");
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG,"OnStop()-Activity is stopped");
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG,"OnDestroy()-Activity is destroyed");
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG,"OnRestart()-Activity is restarted");
+    }
+}

@@ -1,0 +1,247 @@
+activity_main
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="133dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="259dp"
+        android:text="Divide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button3"
+        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="133dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="259dp"
+        android:text="Multiply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="133dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="28dp"
+        android:text="Substract"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="305dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="53dp"
+        android:layout_marginBottom="604dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Number 1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editTextText2"
+        android:layout_width="308dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="507dp"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="Number 2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="133dp"
+        android:layout_height="78dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="28dp"
+        android:text="Add"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/button2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextText2" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="230dp"
+        android:layout_height="139dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="46dp"
+        android:gravity="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+---------------------------------------------------------------------------------------------------------
+
+MainActivity
+
+package com.example.simplecalculatorq7;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+    TextView v1;
+    EditText txt1,txt2;
+    Button b1,b2,b3,b4;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+
+        v1=findViewById(R.id.textView);
+        txt1=findViewById(R.id.editTextText);
+        txt2=findViewById(R.id.editTextText2);
+        b1=findViewById(R.id.button);
+        b2=findViewById(R.id.button2);
+        b3=findViewById(R.id.button3);
+        b4=findViewById(R.id.button4);
+
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String num1=txt1.getText().toString().trim();
+                String num2=txt2.getText().toString().trim();
+                if(!num1.isEmpty() && !num2.isEmpty()){
+                    try{
+                        int x1=Integer.parseInt(num1);
+                        int x2=Integer.parseInt(num2);
+                        int sum=x1+x2;
+                        v1.setText("sum="+sum);
+                    }catch (NumberFormatException e){
+                        v1.setText("invalid number format");
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Enter Both Numbers",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String num1=txt1.getText().toString().trim();
+                String num2=txt2.getText().toString().trim();
+                if(!num1.isEmpty() && !num2.isEmpty()){
+                    try{
+                        int x1=Integer.parseInt(num1);
+                        int x2=Integer.parseInt(num2);
+                        int sub=x1-x2;
+                        v1.setText("Difference="+sub);
+                    }catch (NumberFormatException e){
+                        v1.setText("invalid number format");
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Enter Both Numbers",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String num1=txt1.getText().toString().trim();
+                String num2=txt2.getText().toString().trim();
+                if(!num1.isEmpty() && !num2.isEmpty()){
+                    try{
+                        int x1=Integer.parseInt(num1);
+                        int x2=Integer.parseInt(num2);
+                        int mul=x1*x2;
+                        v1.setText("Product="+mul);
+                    }catch (NumberFormatException e){
+                        v1.setText("invalid number format");
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Enter Both Numbers",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        b4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String num1=txt1.getText().toString().trim();
+                String num2=txt2.getText().toString().trim();
+                if(!num1.isEmpty() && !num2.isEmpty()){
+                    try{
+                        int x1=Integer.parseInt(num1);
+                        int x2=Integer.parseInt(num2);
+                        if (x2 == 0) {
+                            v1.setText("Cannot divide by zero");
+                        } else {
+                            int div = x1 / x2;
+                            int rem = x1 % x2;
+                            v1.setText("Quotient = " + div + ", Remainder = " + rem);
+                        }
+                    }catch (NumberFormatException e){
+                        v1.setText("invalid number format");
+                    }
+                }
+                else{
+                    Toast.makeText(MainActivity.this,"Enter Both Numbers",Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+}
