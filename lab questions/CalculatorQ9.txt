@@ -11,229 +11,141 @@ activity_main
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:id="@+id/editTextText4"
+    <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="155dp"
-        android:ems="10"
-        android:inputType="text"
-        android:text="0.0"
-        android:textSize="100dp"/>
-
+        android:layout_height="127dp"
+        android:gravity="end"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:text="0"
+        android:textSize="50dp" />
 
     <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:rowCount="4"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:columnCount="4"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp">
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp">
 
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b1"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="C"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-        <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b2"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="1"
             android:text="1"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b3"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="2"
             android:text="2"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b4"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="3"
             android:text="3"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:rowCount="4"
-        app:columnCount="4"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp">
-
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b5"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="+"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-        <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b6"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="4"
             android:text="4"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b7"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="5"
             android:text="5"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b8"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="6"
             android:text="6"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:rowCount="4"
-        app:columnCount="4"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp">
-
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b9"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="-"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-        <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b10"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="7"
             android:text="7"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b11"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="8"
             android:text="8"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b12"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="9"
             android:text="9"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-
-    </androidx.gridlayout.widget.GridLayout>
-
-    <androidx.gridlayout.widget.GridLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:rowCount="4"
-        app:columnCount="4"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp">
-
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b13"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="*"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-        <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b14"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="/"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
-        <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b15"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="0"
             android:text="0"
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:onClick="numberClick"
+            />
         <Button
-            android:layout_width="35pt"
-            android:layout_height="50pt"
-            android:id="@+id/b16"
-            android:layout_marginRight="10dp"
-            android:layout_weight="1"
-            android:onClick="operatorEvent"
-            android:text="."
-            android:textSize="40dp"
-            tools:ignore="OnClick" />
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="+"
+            android:text="+"
+            android:onClick="operatorClick"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="-"
+            android:text="-"
+            android:onClick="operatorClick"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="*"
+            android:text="*"
+            android:onClick="operatorClick"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="/"
+            android:text="/"
+            android:onClick="operatorClick"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:tag="C"
+            android:text="C"
+            android:onClick="clearClick"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="88dp"
+            android:onClick="equalClick"
+            android:tag="="
+            android:text="=" />
 
     </androidx.gridlayout.widget.GridLayout>
-
-
 </LinearLayout>
 
 
----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------
 
 MainActivity
 
@@ -243,88 +155,73 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-
-    EditText txt;
-    String oldNumber = "";
-    String operator = "";
-    boolean isNewOp = true;
-
+    TextView res;
+    String currentinput="";
+    String operator="";
+    Double num1=0.0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-
-        txt = findViewById(R.id.editTextText4);
-        txt.setShowSoftInputOnFocus(false); // hide keyboard
+        res=findViewById(R.id.textView);
+        updateDisplay();
     }
-
-    public void operatorEvent(View view) {
-        Button btn = (Button) view;
-        String btnText = btn.getText().toString();
-        String number = txt.getText().toString();
-
-        switch (btnText) {
-            // --- Numbers and dot ---
-            case "0": case "1": case "2": case "3": case "4":
-            case "5": case "6": case "7": case "8": case "9": case ".":
-                if (isNewOp)
-                    txt.setText("");
-                isNewOp = false;
-                txt.append(btnText);
-                break;
-
-            // --- Clear ---
-            case "C":
-                txt.setText("0");
-                oldNumber = "";
-                operator = "";
-                isNewOp = true;
-                break;
-
-            // --- Operators ---
-            case "+": case "-": case "*": case "/":
-                oldNumber = txt.getText().toString();
-                operator = btnText;
-                isNewOp = true;
-                break;
-
-            // --- Equals (if you want to add one later) ---
-            default:
-                Toast.makeText(this, "Unsupported button: " + btnText, Toast.LENGTH_SHORT).show();
+    private void updateDisplay(){
+        if(res != null){
+            res.setText(currentinput.isEmpty()?"0":currentinput);
         }
     }
-
-    // Optional: you can add another button (=) in XML and link it here
-    public void equalEvent(View view) {
-        String newNumber = txt.getText().toString();
-        double result = 0.0;
-
-        try {
-            double num1 = Double.parseDouble(oldNumber);
-            double num2 = Double.parseDouble(newNumber);
-
-            switch (operator) {
-                case "+": result = num1 + num2; break;
-                case "-": result = num1 - num2; break;
-                case "*": result = num1 * num2; break;
-                case "/":
-                    if (num2 == 0) {
-                        Toast.makeText(this, "Cannot divide by zero!", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-                    result = num1 / num2;
-                    break;
-            }
-            txt.setText(result + "");
-        } catch (Exception e) {
-            Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+    public void numberClick(View view){
+        currentinput+=view.getTag().toString();
+        updateDisplay();
+    }
+    public void operatorClick(View view){
+        if(!currentinput.isEmpty()){
+            num1=Double.parseDouble(currentinput);
+            operator=view.getTag().toString();
+            currentinput=operator;
+            updateDisplay();
+            currentinput="";
         }
+    }
+    public void equalClick(View view){
+        if(!currentinput.isEmpty()){
+            Double num2=Double.parseDouble(currentinput);
+            Double answer=calcOperations(num1,num2,operator);
+            currentinput=answer.toString();
+            updateDisplay();
+            operator="";
+        }
+    }
+    public void clearClick(View view){
+        currentinput="";
+        operator="";
+        num1=0.0;
+        updateDisplay();
+    }
+    Double calcOperations(Double a,Double b,String op){
+        switch (op){
+            case("+"):
+                return (double) (a+b);
+            case("-"):
+                return (double) (a-b);
+            case("*"):
+                return (double) (a*b);
+            case("/"):
+                if (b == 0) {
+                    Toast.makeText(this, "Cannot divide by zero", Toast.LENGTH_SHORT).show();
+                    return 0.0;
+                }
+                return (double) (a / b);
+        }
+        return 0.0;
     }
 }
