@@ -245,3 +245,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 }
+
+
+
+
+//
+(!TextUtils.isDigitsOnly(input)) 
