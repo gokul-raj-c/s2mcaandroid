@@ -1,0 +1,89 @@
+MainActivity.java 
+
+package com.example.exp17; 
+import android.content.Context; 
+import android.os.Bundle; 
+import android.view.View; 
+import android.widget.AdapterView; 
+import android.widget.BaseAdapter; 
+import android.widget.GridView; 
+import android.widget.ImageView; 
+import androidx.activity.EdgeToEdge; 
+import androidx.appcompat.app.AlertDialog; 
+import androidx.appcompat.app.AppCompatActivity; 
+import androidx.core.graphics.Insets; 
+import androidx.core.view.ViewCompat; 
+import androidx.core.view.WindowInsetsCompat; 
+public class MainActivity extends AppCompatActivity { 
+int[] imageIds = { 
+R.drawable.image1, 
+R.drawable.image2, 
+R.drawable.image3, 
+R.drawable.image4, 
+}; 
+@Override 
+protected void onCreate(Bundle savedInstanceState) { 
+super.onCreate(savedInstanceState); 
+setContentView(R.layout.activity_main); 
+GridView gridView = findViewById(R.id.gridView); 
+gridView.setAdapter(new ImageAdapter(this)); 
+gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() { 
+@Override 
+public void onItemClick(AdapterView<?> parent, View view, int position, 
+long id) {
+    showAlert(position); 
+} 
+}); 
+} 
+private void showAlert(int position) { 
+new AlertDialog.Builder(this) 
+.setTitle("Selected Image") 
+.setMessage("Image" + (position + 1)) 
+.setPositiveButton("OK", null) 
+.show(); 
+} 
+class ImageAdapter extends BaseAdapter { 
+private Context context; 
+ImageAdapter(Context c) { 
+context = c; 
+} 
+public int getCount() { 
+return imageIds.length; 
+} 
+public Object getItem(int position) { 
+return imageIds[position]; 
+} 
+public long getItemId(int position) { 
+return position; 
+} 
+public View getView(int position, View convertView, android.view.ViewGroup 
+parent) { 
+ImageView imageView; 
+if (convertView == null) { 
+imageView = new ImageView(context); 
+imageView.setLayoutParams(new GridView.LayoutParams(300, 300)); 
+imageView.setScaleType(ImageView.ScaleType.CENTER_CROP); 
+imageView.setPadding(8, 8, 8, 8); 
+} else { 
+imageView = (ImageView) convertView; 
+} 
+imageView.setImageResource(imageIds[position]); 
+return imageView; 
+} 
+}} 
+
+
+---------------------------------------------------------------------------------------------------
+
+activity_main
+
+<GridView xmlns:android="http://schemas.android.com/apk/res/android" 
+android:id="@+id/gridView" 
+android:layout_width="match_parent" 
+android:layout_height="match_parent" 
+android:numColumns="auto_fit" 
+android:verticalSpacing="16dp" 
+android:horizontalSpacing="16dp" 
+android:padding="16dp" 
+android:gravity="center" 
+android:stretchMode="columnWidth" />

@@ -90,34 +90,26 @@ public class MainActivity extends AppCompatActivity {
         c1=findViewById(R.id.checkBox);
         c2=findViewById(R.id.checkBox2);
         c3=findViewById(R.id.checkBox3);
-        c4=findViewById(R.id.checkBox4);
         b1=findViewById(R.id.button);
         t1=findViewById(R.id.textView2);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StringBuilder selected=new StringBuilder("Your Intersets: ");
+                StringBuilder interests = new StringBuilder();
                 if(c1.isChecked()){
-                    selected.append("Football,");
+                    interests.append("messi,");
+                }if (c2.isChecked()) {
+                    interests.append("ronaldo,");
+                }if (c3.isChecked()) {
+                    interests.append("neymar,");
                 }
-                if(c2.isChecked()){
-                    selected.append("cricket,");
-                }
-                if(c3.isChecked()){
-                    selected.append("volleyball,");
-                }
-                if(c4.isChecked()){
-                    selected.append("basketball,");
-                }
-                if(selected.toString().equals("Your Intersets: ")){
-                    t1.setText("no interest selected");
-                }
-                else{
-                    selected.setLength(selected.length()-1);
-                    t1.setText(selected.toString());
+                if (interests.length() == 0) {
+                    t1.setText("Nothing selected");
+                } else {
+                    interests.setLength(interests.length() - 1);
+                    t1.setText("Your Interests: " + interests.toString());
                 }
             }
         });
-
     }
 }
